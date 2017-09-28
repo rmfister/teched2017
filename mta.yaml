@@ -1,3 +1,33 @@
 ID: teched2017
 _schema-version: '2.0'
 version: 0.0.1
+modules:
+  - name: db3
+    type: hdb
+    path: db3
+    requires:
+      - name: hdi-container_3
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: shine-container
+  - name: js
+    type: nodejs
+    path: js
+    provides:
+      - name: js_api
+        properties:
+          url: '${default-url}'
+resources:
+  - name: shine-container
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: shine-container
+    properties:
+      container-name: "'$(service-name)'"
+  - name: hdi-container_3
+    parameters:
+      config:
+        schema: DB3
+    properties:
+      hdi-container-name_3: '${service-name}'
+    type: com.sap.xs.hdi-container

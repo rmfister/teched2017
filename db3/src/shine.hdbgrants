@@ -1,0 +1,10 @@
+{
+  "shine-container": {
+    "object_owner" : {
+      "container_roles":[
+    	"core-db#"
+      ]
+    }
+  }
+}
+
